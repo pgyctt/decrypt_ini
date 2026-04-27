@@ -1,0 +1,18 @@
+[project]
+name = "decrypt-ini"
+version = "0.1.0"
+description = "对称字节变换工具 - 支持文件拖拽的 INI 加密/解密工具"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "tkinterdnd2>=0.4.3",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.20.0",
+]
