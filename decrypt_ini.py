@@ -5,6 +5,12 @@
 解码算法: ((byte << 3) | (byte >> 5)) ^ 0x36
 """
 
+try:
+    import pyi_splash
+    pyi_splash.close()
+except ImportError:
+    pass
+
 import sys
 import os
 import tkinter as tk
@@ -47,8 +53,23 @@ class App:
     def __init__(self, root):
         self.root = root
         self.root.title("对称字节变换工具")
-        self.root.geometry("750x620")
+        
+        # 设置窗口大小并居中显示（考虑任务栏和窗口边框）
+        window_width = 750
+        window_height = 620
+        
+        # 获取屏幕尺寸
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        
+        # 计算居中位置（考虑任务栏48px，标题栏32px和阴影10px）
+        x = (screen_width - window_width - 20) // 2
+        y = (screen_height - 48 - window_height - 32) // 2
+        
+        # 设置窗口几何尺寸和位置
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
         self.root.resizable(True, True)
+        
         self.decoded_content = ""
         self.last_transformed = b""
         self.last_operation = None
